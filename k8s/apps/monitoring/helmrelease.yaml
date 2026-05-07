@@ -20,6 +20,20 @@ spec:
         existingSecret: grafana-admin-secret
         userKey: admin-user
         passwordKey: admin-password
+      grafana.ini:
+        server:
+          root_url: "https://grafana.tail789d60.ts.net"
+        auth.generic_oauth:
+          enabled: true
+          name: Authentik
+          allow_sign_up: true
+          client_id: "$__secretKeyRef:grafana-oauth-secret:client_id"
+          client_secret: "$__secretKeyRef:grafana-oauth-secret:client_secret"
+          scopes: "openid profile email"
+          auth_url: "https://authentik.tail789d60.ts.net/application/o/authorize/"
+          token_url: "https://authentik.tail789d60.ts.net/application/o/token/"
+          api_url: "https://authentik.tail789d60.ts.net/application/o/userinfo/"
+          role_attribute_path: "contains(groups, 'authentik Admins') && 'Admin' || 'Viewer'"    
     prometheus:
       prometheusSpec:
         retention: 30d
