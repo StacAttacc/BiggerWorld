@@ -20,17 +20,9 @@ spec:
         existingSecret: grafana-admin-secret
         userKey: admin-user
         passwordKey: admin-password
-      env:
-        GF_AUTH_GENERIC_OAUTH_CLIENT_ID:
-          valueFrom:
-            secretKeyRef:
-              name: grafana-oauth-secret
-              key: client_id
-        GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET:
-          valueFrom:
-            secretKeyRef:
-              name: grafana-oauth-secret
-              key: client_secret
+      extraEnvFrom:
+        - secretRef:
+            name: grafana-oauth-secret
       grafana.ini:
         server:
           root_url: "https://grafana.tail789d60.ts.net"
@@ -38,8 +30,8 @@ spec:
           enabled: true
           name: Authentik
           allow_sign_up: true
-          client_id: "${GF_AUTH_GENERIC_OAUTH_CLIENT_ID}"
-          client_secret: "${GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET}"
+          client_id: "${client_id}"
+          client_secret: "${client_secret}"
           scopes: "openid profile email"
           auth_url: "https://authentik.tail789d60.ts.net/application/o/authorize/"
           token_url: "https://authentik.tail789d60.ts.net/application/o/token/"
