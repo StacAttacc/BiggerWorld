@@ -1,60 +1,95 @@
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
+apiVersion: ENC[AES256_GCM,data:yfAW8t0JlXUKEpZpwnxdxLMQ3JA8R48qjw==,iv:syJNUSP/jkopBS6V2vzAou4gg1q64PSoTg5Lx4qkKNE=,tag:lLnJcVu5AkRuYeOY6icLrg==,type:str]
+kind: ENC[AES256_GCM,data:6yukM/SYu9++UpQ=,iv:eVqNlMEO0MO4RM/+PSVIw/hmdOGRJM6YDYt3odrNlQQ=,tag:wh1GtHfXwcfqjzlW5Vefwg==,type:str]
 metadata:
-  name: kube-prometheus-stack
-  namespace: monitoring
+    name: ENC[AES256_GCM,data:1TsHFYz2jWWxg+7OCTjicQoiMDEL,iv:gSDPpwn2wGMj79ovg/Di7n/88F6UoYU8hoW13FuGxOI=,tag:7vwOubHdU6IFjnxDY2DpXg==,type:str]
+    namespace: ENC[AES256_GCM,data:I34hCUJKnjP56Q==,iv:T93avyNMOP45cqJIOdMFpGDMfDNdJ+wV+EuPc2IIK0k=,tag:b1DW9KocBxhkppfuZprWXQ==,type:str]
 spec:
-  interval: 10m
-  chart:
-    spec:
-      chart: kube-prometheus-stack
-      version: ">=60.0.0"
-      sourceRef:
-        kind: HelmRepository
-        name: prometheus-community
-        namespace: flux-system
-  values:
-    grafana:
-      enabled: true
-      admin:
-        existingSecret: grafana-admin-secret
-        userKey: admin-user
-        passwordKey: admin-password
-      extraEnvFrom:
-        - secretRef:
-            name: grafana-oauth-secret
-      grafana.ini:
-        server:
-          root_url: "https://grafana.tail789d60.ts.net"
-        auth.generic_oauth:
-          enabled: true
-          name: Authentik
-          allow_sign_up: true
-          client_id: "${client_id}"
-          client_secret: "${client_secret}"
-          scopes: "openid profile email"
-          auth_url: "https://authentik.tail789d60.ts.net/application/o/authorize/"
-          token_url: "https://authentik.tail789d60.ts.net/application/o/token/"
-          api_url: "https://authentik.tail789d60.ts.net/application/o/userinfo/"
-          role_attribute_path: "contains(groups, 'authentik Admins') && 'Admin' || 'Viewer'"
-    prometheus:
-      prometheusSpec:
-        retention: 30d
-        storageSpec:
-          volumeClaimTemplate:
-            spec:
-              storageClassName: local-path
-              accessModes: ["ReadWriteOnce"]
-              resources:
-                requests:
-                  storage: 20Gi
-    alertmanager:
-      alertmanagerSpec:
-        storage:
-          volumeClaimTemplate:
-            spec:
-              storageClassName: local-path
-              accessModes: ["ReadWriteOnce"]
-              resources:
-                requests:
-                  storage: 5Gi
+    interval: ENC[AES256_GCM,data:Ayrl,iv:wL4ci0zf/4SHdWsZb8pafAs7OcWtzhGR/Ow6BFWR7h0=,tag:aO7iDoSf6EfWDCWAouJ3DQ==,type:str]
+    chart:
+        spec:
+            chart: ENC[AES256_GCM,data:+HM45njHjZGr6Lq68wv29S3+cD26,iv:StUf/uRjkCJ1ACQEfMv/EH8xDsRfmvF9LxVMpg7uH/0=,tag:u4L/pDigVSQ99KX3IT055g==,type:str]
+            version: ENC[AES256_GCM,data:8Y1+rPl+ESM=,iv:870v3AvKvbnVRCcPJZ558zgbYk7SbcqxK7XMYm69x+0=,tag:2gCsRZhl6YEFxsBN2fxKHA==,type:str]
+            sourceRef:
+                kind: ENC[AES256_GCM,data:JvQ3PJ7muRyz1AcQYK4=,iv:VaT4vTs2wuuNLhvnghAQaA5ip6/J9RYfkOPve8Gh6i4=,tag:O8LwBV1QZXNiUPfij/GAFg==,type:str]
+                name: ENC[AES256_GCM,data:VEmcL8tzAu/3x+OkM245kKz7e6Q=,iv:LDXvui9AIkgBJMR/1wEITSHvq28wlIXbtYtn6eeqC5s=,tag:WCL3IEhR6NZ1zAjql2kQ7w==,type:str]
+                namespace: ENC[AES256_GCM,data:pLTy7Qpfyh7kupQ=,iv:i3NdqtNRKeYTdnPPvxVpN+2SYzqZfhVyMnFjfCGlgUM=,tag:2S6l/5tXzXagEh6hGN55MQ==,type:str]
+    values:
+        grafana:
+            enabled: ENC[AES256_GCM,data:d06Yiw==,iv:Dek/3QaQrbnD5N3tdVbudIgTXESjP6Xa/qbLlyJwNB4=,tag:SWEMXO+gULsA/XyhC8turA==,type:bool]
+            admin:
+                existingSecret: ENC[AES256_GCM,data:BR127/wKcLIcr7Gy6gXKTP8WTJg=,iv:TYpBQeGTPM5if87WQkvu1o2FlpW8rjmm1MdTwZuobr8=,tag:gfy4t/NYg7Sx7kaXD6aD2w==,type:str]
+                userKey: ENC[AES256_GCM,data:tvbdlVmaMEygyg==,iv:LBt/wbaC7sI0BgqEsPB4svR3YA4KZnj+Jnrx2lZOcXI=,tag:ZXhAT7b/KjezF/G0ZVqGiQ==,type:str]
+                passwordKey: ENC[AES256_GCM,data:hpUAdNJ5q25KmUz1I+s=,iv:V2EAu/bvdorAm5Ssa+Kz/yaYxWFLAvZOwrLbzGTgnnk=,tag:AsAIEIFHNIj2Hjiwc+oyOQ==,type:str]
+            extraEnvFrom:
+                - secretRef:
+                    name: ENC[AES256_GCM,data:lN4tmJzSbyQMJfYbl/rk59emzoM=,iv:NAWY5/AIT6nRcu70SL1z4s+WqTIOj8gwsuos+LW7Un4=,tag:tZg3ebJ9sB7v7eZ6ajZDWA==,type:str]
+            grafana.ini:
+                server:
+                    root_url: ENC[AES256_GCM,data:JT18LRVSwyxocDtFQjJLA0ViU2HLa15qtKpa2IHlt0FE,iv:LQqFHFOGu0MgH95w6Ns8X0AF1HgD7V5B4xKuWEWh8VA=,tag:+V7jcTpqMXlLTfI1klObCg==,type:str]
+                auth.generic_oauth:
+                    enabled: ENC[AES256_GCM,data:Wd7svg==,iv:sAQ2oOoYDxo2w5TnyMTBY+h2OQhYP5mksikYLSgRmZk=,tag:CIgDvAzPl+4bAkO3sxiKAw==,type:bool]
+                    name: ENC[AES256_GCM,data:JbZ/6hORp2QK,iv:OTRl5/MQjoZzrEr0alCSfRQfZtoI7xs/j2SnCO/jDF4=,tag:W6qSKD/RQoIiO/OO/kEZqQ==,type:str]
+                    allow_sign_up: ENC[AES256_GCM,data:2EvyaQ==,iv:tnBwEM7BdktYxuzDM296q8HQWld1b+s0xIjjZYDPymI=,tag:74qKH1Zrwm2v6isgJyrz/w==,type:bool]
+                    client_id: ENC[AES256_GCM,data:NDgmWqY97FlNb2BLb6ooJYHfK2yMsCgmi9mmSd3KsXUa4c/k0rW1jw==,iv:Bw3i8p8pREv1fLFgCW98ovV2WR49jGa+ZKiY49MMT+s=,tag:NpqOyr5r/BFe8/2UvD6SzQ==,type:str]
+                    client_secret: ENC[AES256_GCM,data:eJS+W8KciTnP3S4q3NvVx8RFitJm/KFSvp1jhS9A6Mjlvay/TL179FyCDvNyUcRN1cBhqvTTsdTwCKWKdqRDJaZoFETs6KQYohgLnaks2CySCxw50bL2tBRQDN/tgsCqHLfPQqZ2H732hD54CiVoxa4jh9C84KNWB9ihqGK4guU=,iv:C1y0LmSkXHOWZVumWWkmypH/JGGBQUNRiiSDbIAgf1w=,tag:+CUTbCgkt5lKh9EMXJzO7A==,type:str]
+                    scopes: ENC[AES256_GCM,data:rdQhwHLo1Rfkh8oksVA9ufP+5lI=,iv:WxuZ2joYMbg1slzCuqJWhHj9d1skWaEV93E5LAbCo2Q=,tag:2Gs6sct10m6Qv2HCiPRrXA==,type:str]
+                    auth_url: ENC[AES256_GCM,data:/86O+o6C0tmnr1DiEXbCTX3e/bwFPFl0LlMASvkzFWjQMOp27V7XarXfos5bS9Owai6VBBW1hx8DFcxd,iv:4HMc1UZT0Hk25VlIaP03yOlOnTo/ksE+AXF7+NNITKc=,tag:Qt2y0/K4dj96w/TCWs5OGg==,type:str]
+                    token_url: ENC[AES256_GCM,data:oErCIcvappeg5IHYwQN5/CF+UVWaHHEPKywRgrjci1smSxti6AVXvSFREnzph6yL7O4UImoEh68=,iv:TCXB27rRL7y7CH9LboshSJANP1MLcR7JYLY2icqB0Nc=,tag:SSdJ8jspGOXWKGtnZhEQYA==,type:str]
+                    api_url: ENC[AES256_GCM,data:rFktSTBQMo1bJnjwGrPKlg3RNjCz8btvS3Ec2hK8jbgIv6TpnsF0ns4YhM6O92gV3nYzIq0IpAWratg=,iv:EneNt924i3N1T38f0is9kFHtAAyrq9TPjyulohHduKs=,tag:5fN/nqq4as2yz/2IwuQVHA==,type:str]
+                    role_attribute_path: ENC[AES256_GCM,data:eR8uBnpSEF+Rx5lx/M3EmE5DO+ER5R7fwm2Bt0OQUU1R5P+uH2RXlV6377ND5eQ5CBpfwx7qV7rojtc=,iv:LKpCfkiYAVsb1LjD92pw85XSQvs/dvNfFB7Z7gZwrKU=,tag:4pUPz/55q2B5Nr6J3xwbNQ==,type:str]
+        prometheus:
+            prometheusSpec:
+                retention: ENC[AES256_GCM,data:7KOn,iv:FRNAVq5VYiz2TQCUSQRiGkhYeGZMPU8ZBEab3Ys7P1M=,tag:dlgGaVbM5lwfHzU0pvxd2Q==,type:str]
+                storageSpec:
+                    volumeClaimTemplate:
+                        spec:
+                            storageClassName: ENC[AES256_GCM,data:lvuwi/0125q/Ng==,iv:e6EhxOGwDoAj7Pxdt1ybTPzc2Ipb4kkYzVQSmhbOaxo=,tag:Iu0kCfE22b+FPUXlMNrJzw==,type:str]
+                            accessModes:
+                                - ENC[AES256_GCM,data:GP9oehIpuzXUwso6Uw==,iv:sx4EqlovRc15yq6B1RdTDigylFxF8iW7zxzwEp6Epc8=,tag:EQwddseT7T8+ZHRXlKdXPA==,type:str]
+                            resources:
+                                requests:
+                                    storage: ENC[AES256_GCM,data:1DZrfA==,iv:xwqw+DIZLh0lTYaE2gryAbUUmUnL45F2zxtIyy9dhYE=,tag:z0jacX2EExR0ctrqv1ammQ==,type:str]
+        alertmanager:
+            alertmanagerSpec:
+                storage:
+                    volumeClaimTemplate:
+                        spec:
+                            storageClassName: ENC[AES256_GCM,data:wS6zFCCEsRLZsg==,iv:G4p+kJpCQt1qri67KtY5oGQ1YLj3zIfOLcuYN1+6ScQ=,tag:+AsNd+BN0b8kLO8/m1Kpow==,type:str]
+                            accessModes:
+                                - ENC[AES256_GCM,data:5wXQOZzrg2ZBIqd/dg==,iv:tyxTJ08LoO2kGWAEpAVH71uAy72XkGfR8k5WC54diRw=,tag:nnqIML6CGBFnYRHv1q2RVA==,type:str]
+                            resources:
+                                requests:
+                                    storage: ENC[AES256_GCM,data:6I1x,iv:QazKPTYzu9PdGxMEf6JrUi1tr47/5UFlX/MUucOMHHY=,tag:sbK9WzpZPyZT4OhyBh4Lcg==,type:str]
+sops:
+    age:
+        - recipient: age1sl4vva0g5zsk5mp9dqqwh34t7vtjd5m9dfqdpwl9ete638939q3sckw036
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAxODhPYnFaZFk3dFFHZEtG
+            SGUwR0dFYlprMDh5aEtzNmhGWVkxTy9FM1hjCjlXcmRCZ0h1R1hJOENpRDZTbnJL
+            MGJma1YrcWlWVStTb0tCWHU2WFdRWmsKLS0tIHZlOWFXLzJSTWxWOU1ZcFRLUG5Z
+            eTY0NnljOGxnTGZlcHB5N1dxZGxxc2sKnW3BMu8Jc94ewzdNhEgmztNeIwIUq+Bi
+            j18ZPbR8YkN81iqHqwtiukevv5pvi3Hei4bpF5akgi9GX0Xg+bdyCQ==
+            -----END AGE ENCRYPTED FILE-----
+        - recipient: age1gqdkg7fwguwtyp6glxeln6chmusjye4k8yhe6kq9g7gch4lt45dqx5xtvx
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBkTUJJVGV3Q1hGSTdUV3or
+            bXRYNUZmZWN2T1JCZmcxemdVb0RJT004VlNVCkJReVpnWlMwNWl1UjV1MUtMaldM
+            SmdVeXJxSjVWcDU4N1Y4SGs3MmdUc3cKLS0tIHBiYjV4YTR4MzVNRVQ4ZEpKc1JN
+            ZlZwZFJxUm1Cait3bFlRVWlhZUltUmcKHs8eJCavm/nZhInIWxq42VduLr67ux0c
+            Wn21rNVx6SGdQ/zc6PIMsSUafD+yKj+ih0Htv4yPHgZ4cqAkbw7pZQ==
+            -----END AGE ENCRYPTED FILE-----
+        - recipient: age1l7adltmqwfdk663nazugqr3r65qknfc3q7jja6y2zv0mnekmg3hq2uekvy
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBUR3dFQkhZZUxpWmVvSW5o
+            d2RxaWxDVVBmQXdQY21pMGRxMmJBKy93WFZvCi8wRWk3WHdoclVlVTZZUnBwd3hD
+            MllUQlNBNm1rRkszOHNEYUdzbk5DbW8KLS0tIEd5eGllendQWi9velcyUnpXMmdY
+            K29EYUZ4WkJPOEh0YlA0M1VIRmZqSTgKKkX7N7IjMtg5h0OMo1qfDXyTrFkN5dHF
+            dXsoL1hmcoisUlOfZfBr7AYDOw3ThbovF+G+AaT1vROaITXqBu/F9Q==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-05-07T10:28:06Z"
+    mac: ENC[AES256_GCM,data:B9+BPZ+H1krEru/NLp+4gVJeY3Nyuolw7v2p/hkstAPHt7FRTa3fzIH/r6ToS85nGciV3iBVczQFAAkPNDlAxo4VouEuk0P2OrAMuiMbk3FhEBUsrImQPd+UeZzTjUc3b0nFMSMCvTMXoGHjsaNWF1RclF5l1sX86hMaFQbFBNA=,iv:TnKPJlNnLQZSEs8K5jHLen+VVohGaZL6mTcg+C1qzWE=,tag:I0Gtg+hZ4l0vmTF5FCTGMQ==,type:str]
+    unencrypted_suffix: _unencrypted
+    version: 3.12.2
